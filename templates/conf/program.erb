@@ -45,7 +45,9 @@ user=<%= @user %>
 <% if @redirect_stderr != nil -%>
 redirect_stderr=<%= @redirect_stderr %>
 <% end -%>
-<% if @stdout_logfile -%>
+<% if @stdout_logfile == 'syslog' -%>
+stdout_logfile=<%= @stdout_logfile %>
+<% else %>
 stdout_logfile=<%= scope.lookupvar('supervisord::log_path') %>/<%= @stdout_logfile %>
 <% end -%>
 <% if @stdout_logfile_maxbytes -%>
