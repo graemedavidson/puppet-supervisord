@@ -60,7 +60,9 @@ stdout_capture_maxbytes=<%= @stdout_capture_maxbytes %>
 <% if @stdout_events_enabled != nil -%>
 stdout_events_enabled=<%= @stdout_events_enabled %>
 <% end -%>
-<% if @stderr_logfile -%>
+<% if @stderr_logfile == 'syslog' -%>
+stderr_logfile=<%= @stderr_logfile %>
+<% else %>
 stderr_logfile=<%= scope.lookupvar('supervisord::log_path') %>/<%= @stderr_logfile %>
 <% end -%>
 <% if @stderr_logfile_maxbytes -%>
